@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            position: relative;
+        }
+        .containThumbNails{
+            background: transparent;
+            backdrop-filter: blur(100px);
+            position: absolute;
+            top: -13rem;
+            width: 100%;
+            height: 10rem;
+            transition: 1s;
+        }
+        .containerCross {
+            float: right;
+            padding: 1rem;
+            right: 1rem;
+            bottom: -3.3rem;
+            position: absolute;
+        }
+        .containerCross:hover svg path{
+            fill: rgb(255, 85, 0);
+            transition: fill 1s ease;
+        }
+        .containerCross svg {
+            width: 10px;
+        }
+        #thumbnails {
+            display: flex;
+            /* justify-content: start; */
+            flex-wrap: wrap;
+            height: min-content;
+            max-width: 100%;
+            background: transparent;
+            backdrop-filter: blur(20px);
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+            background: linear-gradient(grey,transparent);
+            padding: 3rem 3rem;
+
+            
+        }
+        #thumbnails img {
+            /* align-items:end; */
+            width: 110px;
+            margin: auto;
+            border: 2px solid white;
+            opacity: 1;
+
+            transition: .5s ease-out;
+            transform: scale(1) translateY(0rem);
+            transform-style: preserve-3d;
+
+        }
+        .video {
+            display: none;
+        }
+        .containerLector {
+            max-width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        .videoVisible {
+            width: 100%;
+            max-height: 100vh;
+            transform: scaleX(1.12);
+        }
+        /* player */
+        .playersControls {
+            bottom: 0rem;
+            position: absolute;
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, .4);
+        }
+        .playersControls ul {
+            list-style: none;
+            display: flex;
+        }
+        .controlsIcons {
+            margin-left: 3rem;
+            display: flex;
+
+        }
+        .controlsIcons svg{
+            width: 20px;
+            display: block;
+            margin: auto;
+
+        }
+        .play svg:hover path, .pause svg:hover path {
+            fill: rgb(255, 85, 0);
+            transition: .3s ease-in-out;
+            cursor: pointer;
+        }
+        .soundControl {
+            margin-left: auto;
+            position: relative;
+            margin-right: 5rem;
+            /* flex-direction: column-reverse; */
+            /* background: purple; */
+        }
+        .soundControl svg {
+            margin: auto;
+        }
+        .soundControl svg path {
+            fill:rgb(255, 85, 0);
+            transition: .5s all ease;
+        }
+        .soundControl:hover svg path {
+            stroke:rgb(255, 85, 0)!important;
+            stroke-width: 1px;
+            transition: .5s all ease;
+        }
+        ul.soundBarControls {
+            display: flex;
+            flex-direction: column;
+            max-width: min-content;
+            /* flex-wrap: wrap; */
+            align-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: .3s;
+            transform-origin: center bottom;
+            transform: scaleY(1);
+            background: transparent;
+            backdrop-filter: blur(12px);
+            bottom: 4.3rem;
+            position: absolute;
+            padding: 0;
+            left: -.33rem;
+            padding-bottom: 1rem;
+            padding-top: 1rem;
+        }
+        .soundControl .soundBarControls li {
+            width: 1.3rem;
+            height: 5px;
+            background: white;
+            border-radius: 2px;
+            transition: .3s;
+            margin: .3rem;
+            box-shadow: inset 0px 0px 2px black;
+        }
+        .framesOf{
+            transition: .5s ease-out;
+            transform: translateZ(0);
+            transform-style: preserve-3d;
+            
+        }
+
+    </style>
+</head>
+<body>
+    <video class="video" src="Iceland - The Land of Fire and Ice - In 4K.mp4"></video>
+    <div class="containerLector">
+        <video class="videoVisible" src="Iceland - The Land of Fire and Ice - In 4K.mp4">
+            
+        </video>
+        <div class="containThumbNails">
+                    <div id="thumbnails"></div>
+                    <div class="containerCross">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                            y="0px" width="100px" height="100px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+                            <path fill="#FFFFFF" d="M74.978,5.339L50,30.316L25.022,5.339c-5.574-5.574-14.61-5.574-20.184,0s-5.574,14.61,0,20.184L29.816,50.5
+                        	L4.839,75.478c-5.574,5.573-5.574,14.61,0,20.184s14.61,5.573,20.184,0L50,70.684l24.978,24.978c5.573,5.573,14.61,5.573,20.184,0
+                        	s5.573-14.61,0-20.184L70.184,50.5l24.978-24.978c5.573-5.574,5.573-14.61,0-20.184S80.551-0.235,74.978,5.339z" />
+                        </svg>
+                    </div>
+
+        </div>
+        <div class="playersControls">
+            <ul>
+                <li class="play controlsIcons">
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                        y="0px" width="100px" height="100px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+                        <path fill="#FFFFFF" d="M93.104,48.147L11.613,1.098c-0.84-0.486-1.876-0.486-2.717,0C8.055,1.583,7.537,2.48,7.537,3.451v94.098
+                        c0,0.971,0.518,1.868,1.359,2.354c0.42,0.242,0.889,0.363,1.358,0.363c0.469,0,0.938-0.121,1.358-0.363l81.492-47.05
+                        c0.841-0.484,1.358-1.382,1.358-2.353S93.945,48.632,93.104,48.147z" />
+                    </svg>
+                </li>
+                <li class="pause controlsIcons">
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                        y="0px" width="100px" height="100px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+                        <g>
+                            <path fill="#FFFFFF" d="M40.74,0.25H4.159c-1.616,0-2.927,1.311-2.927,2.926v93.647c0,1.616,1.311,2.927,2.927,2.927H40.74
+                    		c1.616,0,2.927-1.311,2.927-2.927V3.176C43.667,1.561,42.356,0.25,40.74,0.25z" />
+                            <path fill="#FFFFFF" d="M97.074,0.25h-36.58c-1.617,0-2.928,1.311-2.928,2.926v93.647c0,1.616,1.311,2.927,2.928,2.927h36.58
+                    		c1.617,0,2.926-1.311,2.926-2.927V3.176C100,1.561,98.691,0.25,97.074,0.25z" />
+                        </g>
+                    </svg>
+                </li>
+                <li class="soundControl controlsIcons">
+                    <div class="contIconSound">
+                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                            y="0px" width="100px" height="100px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+                            <g>
+                                <path fill="rgb(255, 85, 0)" stroke-width="5px" stroke="transparent" d="M97.639,1.003c-0.843-0.486-1.879-0.486-2.722,0L54.764,24.186v52.63l40.153,23.182
+                                            		c0.421,0.243,0.891,0.364,1.36,0.364c0.471,0,0.94-0.121,1.361-0.364C98.48,99.511,99,98.612,99,97.64V3.361
+                                            		C99,2.388,98.48,1.49,97.639,1.003z" />
+                                <path fill="rgb(255, 85, 0)" stroke-width="5px" stroke="transparent" d="M47.958,7.786H3.722C2.219,7.786,1,9.005,1,10.508v79.984c0,1.503,1.219,2.722,2.722,2.722h44.236
+                                            		c1.503,0,2.722-1.219,2.722-2.722V76.815v-52.63V10.508C50.681,9.005,49.462,7.786,47.958,7.786z" />
+                            </g>
+                        </svg>
+                    </div>
+                    
+                    <ul class="soundBarControls">
+                        
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        
+                    </ul>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <canvas id="canvasElement" style="display: none;"></canvas>
+    <script src="videoUtils.js"></script>
+</body>
+</html>
